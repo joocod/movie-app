@@ -4,13 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './styled/GlobalStyle';
-import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Main from './pages/Main';
+import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
   {
-    path : '.',
-    element : <Main/>
+    path : '/',
+    element : <Main/>,
+    errorElement : <NotFound/>,
+    children : [
+
+    ]
   }
 ])
 
@@ -19,6 +24,7 @@ root.render(
   <React.StrictMode>
     {/* <App /> */}
     <GlobalStyle/>
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
