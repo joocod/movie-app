@@ -4,8 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './styled/GlobalStyle';
+import { createBrowserRouter } from 'react-router-dom';
+import Main from './pages/Main';
 
-
+const router = createBrowserRouter([
+  {
+    path : '.',
+    element : <Main/>
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
