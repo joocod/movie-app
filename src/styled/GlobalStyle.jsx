@@ -61,3 +61,4 @@ input{
     border: none;
 }
 `
+export default GlobalStyle;
