@@ -28,6 +28,8 @@ root.render(
     {/* <Main/> */}
     <RouterProvider router={router}/>
     <MainVideos/>
+    
+
   </React.StrictMode>
 );
 
