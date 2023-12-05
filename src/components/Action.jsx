@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { fetchActionmovies } from '../store/Index';
 import styled from 'styled-components';
 
+// swiper
+
 function Action() {
 
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
@@ -46,5 +48,8 @@ const MovieWrapper = styled.div`
 `
 
 const MovieItem = styled.div`
-    
+    img{
+        display: block;
+        max-width: 300px;
+    }
 `
