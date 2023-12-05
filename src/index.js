@@ -9,7 +9,13 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import MainVideos from './components/MainVideos';
 import MovieList from './components/MovieList';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import rootReducer from './store/reducer';
+import { applyMiddleware, createStore, compose } from 'redux';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENTION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 const router = createBrowserRouter([
   {
     path : '/',
@@ -29,8 +35,9 @@ root.render(
     {/* <Main/> */}
     <RouterProvider router={router}/>
     <MainVideos/>
-    <MovieList/>
-
+    <Provider store={store}>
+      <MovieList/>
+    </Provider>
   </React.StrictMode>
 );
 

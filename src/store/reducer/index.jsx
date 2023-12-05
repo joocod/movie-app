@@ -31,7 +31,7 @@
  */
 
 import {combineReducers} from 'redux'
-import {FETCH_ACTION_MOVIES} from '../index/'   
+import {FETCH_ACTION_MOVIES} from '../'   
 
     const actionMoviereducer = (state = [], action)=>{
         switch(action.type){

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {useDispatch} from 'react-redux'
-import { fetchActionmovies } from '../store/Index';
+import { fetchActionmovies } from '../store/index';
 
 function Action() {
 
