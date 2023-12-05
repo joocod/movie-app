@@ -2,11 +2,15 @@ import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchActionmovies } from '../store/Index';
 import styled from 'styled-components';
-import {Swiper, SwiperSlide} from 'swiper/react';   // swiper 적용 import
-import 'swiper/css';    // swiper 기본 css 적용 import
 
 // swiper
 // yarn add swiper 설치
+import {Swiper, SwiperSlide} from 'swiper/react';           // swiper 적용 import
+import { Navigation, Pagination } from 'swiper/modules';    // swiper 모듈 import
+
+import 'swiper/css';                // swiper 기본 css 적용 import
+import 'swiper/css/navigation';     // swiper 좌우 버튼 기본 css
+import 'swiper/css/pagination';     // swiper dot-list 기본 css    
 
 function Action() {
 
@@ -19,12 +23,15 @@ function Action() {
     return (
         <div>
             <MovieContainer>
-                <MovieTitle>액션</MovieTitle>
+                {/* <MovieTitle>액션</MovieTitle> */}
                 <Swiper 
                     spaceBetween={10}   // 슬라이드와 슬라이드 사이 여백(gap);
                     slidesPerView={5}   // 한번에 보여질 슬라이드 아이템의 갯수
                     slidesPerGroup={5}  // 슬라이드 이동 시 한번에 움직일 슬라이드 아이템의 갯수
                     loop                // 무한반복
+                    modules={[Navigation, Pagination]}  // 모듈 적용
+                    navigation          // 모듈 실제 적용
+                    pagination          // 모듈 실제 적용
                 >
                     <MovieWrapper>
                         {actionData.results && actionData.results.map((el,index)=>(
