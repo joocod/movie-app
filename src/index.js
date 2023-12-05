@@ -8,6 +8,7 @@ import Main from './pages/Main';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import MainVideos from './components/MainVideos';
+import MovieList from './components/MovieList';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ root.render(
     {/* <Main/> */}
     <RouterProvider router={router}/>
     <MainVideos/>
-    
+    <MovieList/>
 
   </React.StrictMode>
 );
