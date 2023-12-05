@@ -7,6 +7,7 @@ import GlobalStyle from './styled/GlobalStyle';
 import Main from './pages/Main';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import NotFound from './pages/NotFound';
+import MainVideos from './components/MainVideos';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ root.render(
     <GlobalStyle/>
     {/* <Main/> */}
     <RouterProvider router={router}/>
+    <MainVideos/>
   </React.StrictMode>
 );
 
