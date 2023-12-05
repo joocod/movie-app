@@ -54,6 +54,7 @@ export default Action
 const MovieContainer = styled.div`
     margin-bottom: 50px;
     position: relative;
+    /* box-sizing: ; */
 `
 const MovieTitle = styled.div`
     font-size: 40px;
@@ -62,14 +63,12 @@ const MovieTitle = styled.div`
 `
 
 const MovieWrapper = styled.div`
-    display: flex;
-    gap: 30px;
     height: 200px;
 `
 
 const MovieItem = styled.div`
     img{
         display: block;
-        max-width: 300px;
+        width: 100%;
     }
 `

@@ -18,3 +18,19 @@
 .swiper-button-next:hover{
     background: rgba(0, 0, 0, 0.9);
 }
+
+.swiper-pagination{
+    top: 0!important;
+    text-align: right;
+}
+
+.swiper-pagination .swiper-pagination-bullet{
+    height: 3px;
+    width: 10px;
+    border-radius: 0;
+    background: gray;
+}
+
+.swiper-pagination .swiper-pagination-bullet.active{
+    background: #fff;
+}
