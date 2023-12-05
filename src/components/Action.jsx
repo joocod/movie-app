@@ -54,7 +54,7 @@ export default Action
 const MovieContainer = styled.div`
     margin-bottom: 50px;
     position: relative;
-    /* box-sizing: ; */
+    box-sizing: border-box;
 `
 const MovieTitle = styled.div`
     font-size: 40px;

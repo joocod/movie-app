@@ -34,3 +34,8 @@
 .swiper-pagination .swiper-pagination-bullet.active{
     background: #fff;
 }
+
+.swiper{
+    padding: 30px;
+
+}
