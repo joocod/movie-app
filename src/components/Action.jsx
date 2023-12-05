@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchActionmovies } from '../store/Index';
 import styled from 'styled-components';
+import '../styled/swiperCustom.css';
 
 // swiper
 // yarn add swiper 설치
