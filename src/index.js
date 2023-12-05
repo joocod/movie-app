@@ -10,7 +10,7 @@ import NotFound from './pages/NotFound';
 import MainVideos from './components/MainVideos';
 import MovieList from './components/MovieList';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import {thunk} from 'redux-thunk';
 import rootReducer from './store/reducer';
 import { applyMiddleware, createStore, compose } from 'redux';
 

@@ -39,7 +39,9 @@ import {FETCH_ACTION_MOVIES} from '../'
             return{
                 ...state,
                 movies : action.data
-            }
+            };
+            default:
+            return state;
         }
     }
     

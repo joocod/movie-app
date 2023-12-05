@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { fetchActionmovies } from '../store/index';
 
 function Action() {
@@ -8,6 +8,8 @@ function Action() {
     useEffect(()=>{
         dispatch(fetchActionmovies())
     })
+
+    const actionData = useSelector((state)=>state.action.movies,[]) || []
     return (
         <div>
             
