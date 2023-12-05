@@ -22,6 +22,9 @@
 .swiper-pagination{
     top: 0!important;
     text-align: right;
+    left: auto!important;
+    bottom: auto!important;
+    right: 60px;
 }
 
 .swiper-pagination .swiper-pagination-bullet{
@@ -36,6 +39,5 @@
 }
 
 .swiper{
-    padding: 30px;
-
+    padding-top: 30px;
 }
