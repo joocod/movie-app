@@ -30,7 +30,8 @@
     - 변경될 내용이 전달되면 reducer가 코드를 처리하고 업데이트한다.  
  */
 
-    import {combineReducers} from 'redux';        
+import {combineReducers} from 'redux';
+import {FETCH_ACTION_MOVIES} from '../index/'   
 
     const actionMoviereducer = (state = [], action)=>{
         switch(action.type){
@@ -52,7 +53,7 @@
           combineReducers를 사용한다.
     */
     
-    export default rootReducer;
+export default rootReducer;
     
     
     
