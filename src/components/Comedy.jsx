@@ -20,10 +20,11 @@ function Comedy() {
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
     useEffect(()=>{
         dispatch(fetchComedymovies())
-    })
+    }, [])
 
-    const actionData = useSelector((state)=>state.action.movies,[]) || []
-    
+    const actionData = useSelector((state)=>state.comedy.movies, []) || []
+    console.log(actionData.results)
+
     const overviewEvent = (el)=>{
         setIsclick(el);
     }

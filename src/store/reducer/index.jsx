@@ -58,7 +58,7 @@ const comedyMoviereducer = (state = [], action)=>{
     
 const rootReducer = combineReducers({
     action : actionMoviereducer, 
-    comdey : comedyMoviereducer,
+    comedy : comedyMoviereducer,
 })  
     
     /*

@@ -41,7 +41,7 @@ export const fetchComedymovies = ()=>{
 
         return axios.get(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=35`)
         .then((res)=>{      // then : axios에서 콜백함수를 대체하는 return과 같은 구문
-            dispatch(fetchActiondata(res.data))
+            dispatch(fetchComedydata(res.data))
             
         })
     }
