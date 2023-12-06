@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchActionmovies } from '../store';
+import { fetchComedymovies } from '../store';
 import styled from 'styled-components';
 import Overview from './Overview';
 
@@ -19,7 +19,7 @@ function Comedy() {
     const [isClick, setIsclick] = useState(false);
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
     useEffect(()=>{
-        dispatch(fetchActionmovies())
+        dispatch(fetchComedymovies())
     })
 
     const actionData = useSelector((state)=>state.action.movies,[]) || []
