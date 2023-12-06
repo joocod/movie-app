@@ -47,11 +47,7 @@ function Action() {
                 >
                     <MovieWrapper>
                         {actionData.results && actionData.results.map((el,index)=>(
-                            <SwiperSlide>
-                                <MovieItem onClick={()=>overviewEvent(el,index)}>
-                                    <img src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}/>
-                                </MovieItem>
-                            </SwiperSlide>
+                            <SwiperSlide/>
                         ))}
                     </MovieWrapper>
                 </Swiper>
