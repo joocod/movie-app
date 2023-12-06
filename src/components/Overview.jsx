@@ -9,7 +9,11 @@ function Overview({movie, setIsClick}) {
           <CloseBtn onClick={()=>setIsClick(false)}>
             <MdClose />
           </CloseBtn>  
+          {/* <Link to={}> */}
         <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
+        <HoverText>
+          <h2>{movie.title}</h2>
+        </HoverText>
         </HoverWrapper>
       </HoverContainer>
     )
@@ -18,24 +22,24 @@ function Overview({movie, setIsClick}) {
 export default Overview
 
 const HoverContainer = styled.div`
-    width: 100vw;
-    background: rgba(0,0,0,0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const HoverWrapper = styled.div`
-    padding: 50px;
-    max-width: 50%;
-    background: gray;
-    position: relative;
-    border-radius: 10px;
+  max-width: 50%;
+  background: gray;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
 `
 const CloseBtn = styled.button`
   width: 30px;
@@ -55,4 +59,12 @@ const CloseBtn = styled.button`
       color: #fff;
     }
   }
+`
+
+const HoverText = styled.div`
+  padding: 30px;
+  box-sizing: border-box;
+  height: auto;
+  width: 100%;
+  background: gray;
 `
