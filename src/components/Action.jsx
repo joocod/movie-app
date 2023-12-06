@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchActionmovies } from '../store/Index';
 import styled from 'styled-components';
 import '../styled/swiperCustom.css';
+import Overview from './Overview';
 
 // swiper
 // yarn add swiper 설치
@@ -13,14 +14,24 @@ import 'swiper/css';                // swiper 기본 css 적용 import
 import 'swiper/css/navigation';     // swiper 좌우 버튼 기본 css
 import 'swiper/css/pagination';     // swiper dot-list 기본 css    
 
+
 function Action() {
 
+    const [isClick, setIsclick] = useState(false);
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
     useEffect(()=>{
         dispatch(fetchActionmovies())
     })
 
     const actionData = useSelector((state)=>state.action.movies,[]) || []
+    
+    const overviewEvent = (el)=>{
+        setIsclick(el);
+    }
+
+    const overviewClose = ()=>{
+        setIsclick(false);
+    }
     return (
         <div>
             <MovieContainer>
@@ -37,7 +48,7 @@ function Action() {
                     <MovieWrapper>
                         {actionData.results && actionData.results.map((el,index)=>(
                             <SwiperSlide>
-                                <MovieItem>
+                                <MovieItem onClick={()=>overviewEvent(el,index)}>
                                     <img src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}/>
                                 </MovieItem>
                             </SwiperSlide>
@@ -45,6 +56,7 @@ function Action() {
                     </MovieWrapper>
                 </Swiper>
             </MovieContainer>
+            {isClick && <Overview movie={isClick} setIsClick={overviewClose}/>}
         </div>
     )
 }
