@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BiSearch } from "react-icons/bi";
 import {styled} from 'styled-components';
+import '../styled/swiperCustom.css';
 import { MdClear } from "react-icons/md";
 
 function Search() {
