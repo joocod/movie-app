@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import {thunk} from 'redux-thunk';
 import rootReducer from './store/reducer';
 import { applyMiddleware, createStore, compose } from 'redux';
+import Moviedetail from './pages/Moviedetail';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENTION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
@@ -22,7 +23,10 @@ const router = createBrowserRouter([
     element : <Main/>,
     errorElement : <NotFound/>,
     children : [
-      // {path : ''}
+      {
+        path : 'movie/:movieId',  // : -> 변수 값
+        element : <Moviedetail/>  // moviedetail 페이지 열기
+      }      
     ]
   }
 ])

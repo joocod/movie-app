@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdClose } from "react-icons/md";
+import {Link} from 'react-router-dom';
 
 function Overview({movie, setIsClick}) {
     return (
@@ -9,11 +10,12 @@ function Overview({movie, setIsClick}) {
           <CloseBtn onClick={()=>setIsClick(false)}>
             <MdClose />
           </CloseBtn>  
-          {/* <Link to={}> */}
-        <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
-        <HoverText>
-          <h2>{movie.title}</h2>
-        </HoverText>
+          <Link to={`/movie/${movie.id}`}>
+            <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
+          </Link>
+          <HoverText>
+            <h2>{movie.title}</h2>
+          </HoverText>
         </HoverWrapper>
       </HoverContainer>
     )
