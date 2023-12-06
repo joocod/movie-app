@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchActionmovies } from '../store';
+import { fetchComedymovies } from '../store';
 import styled from 'styled-components';
-import '../styled/swiperCustom.css';
 import Overview from './Overview';
 
 // swiper
@@ -20,11 +19,12 @@ function Action() {
     const [isClick, setIsclick] = useState(false);
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
     useEffect(()=>{
-        dispatch(fetchActionmovies())
-    })
+        dispatch(fetchComedymovies())
+    }, [])
 
-    const actionData = useSelector((state)=>state.action.movies,[]) || []
-    
+    const actionData = useSelector((state)=>state.action.movies, []) || []
+    console.log(actionData.results)
+
     const overviewEvent = (el)=>{
         setIsclick(el);
     }
@@ -35,7 +35,7 @@ function Action() {
     return (
         <div>
             <MovieContainer>
-                <MovieTitle>액션</MovieTitle>
+                <MovieTitle>코미디</MovieTitle>
                 <Swiper 
                     spaceBetween={10}   // 슬라이드와 슬라이드 사이 여백(gap);
                     slidesPerView={5}   // 한번에 보여질 슬라이드 아이템의 갯수
@@ -47,7 +47,11 @@ function Action() {
                 >
                     <MovieWrapper>
                         {actionData.results && actionData.results.map((el,index)=>(
-                            <SwiperSlide/>
+                            <SwiperSlide>
+                                <MovieItem onClick={()=>overviewEvent(el,index)}>
+                                    <img src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}/>
+                                </MovieItem>
+                            </SwiperSlide>
                         ))}
                     </MovieWrapper>
                 </Swiper>

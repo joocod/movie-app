@@ -1,8 +1,8 @@
 import React from 'react'
-import { IoIosPlay } from "react-icons/io";
+import { IoIosPlay, IoIosArrowDown } from "react-icons/io";
 import { LuPlus } from "react-icons/lu";
 import { SlLike } from "react-icons/sl";
-import { IoIosArrowDown } from "react-icons/io";
+import styled from 'styled-components';
 
 function MovieCard({movie}) {
     const {title, backdrop_path, genredId} = movie;
@@ -28,3 +28,10 @@ function MovieCard({movie}) {
 }
 
 export default MovieCard
+
+const MovieItem = styled.div`
+    img{
+        display: block;
+        width: 100%;
+    }
+`
