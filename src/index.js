@@ -1,47 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import GlobalStyle from './styled/GlobalStyle';
-import Main from './pages/Main';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import NotFound from './pages/NotFound';
-import MainVideos from './components/MainVideos';
-import MovieList from './components/MovieList';
-import { Provider } from 'react-redux';
-import {thunk} from 'redux-thunk';
-import rootReducer from './store/reducer';
-import { applyMiddleware, createStore, compose } from 'redux';
 import Moviedetail from './pages/Moviedetail';
+/*
+  - import시 {} 사용 / 미사용
+  - 기능을 내보내기 하는 방법에 따라 차이가 발생
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENTION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+  - {}가 없는 import는 export default로 내보내기된 컴포넌트를 import
+  - {}를 사용해서 가져올 때에는 default 값이 아닌 하나의 컴포넌트에
+    여러 개의 export가 되어있는 경우 각각 가져오기 위해 사용
+*/
+
 const router = createBrowserRouter([
   {
     path : '/',
-    element : <Main/>,
+    element : <App/>,
     errorElement : <NotFound/>,
-    children : [
-      {
-        path : 'movie/:movieId',  // : -> 변수 값
-        element : <Moviedetail/>  // moviedetail 페이지 열기
-      }      
-    ]
-  }
+    children : []
+    },
+  {
+    path : 'movie/:movieId',  // : -> 변수 값
+    element : <Moviedetail/>  // moviedetail 페이지 열기
+  }     
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <GlobalStyle/>
-    {/* <Main/> */}
     <RouterProvider router={router}/>
-    <MainVideos/>
-    <Provider store={store}>
-      <MovieList/>
-    </Provider>
   </React.StrictMode>
 );
 
