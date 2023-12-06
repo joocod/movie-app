@@ -15,7 +15,7 @@ import 'swiper/css/navigation';     // swiper 좌우 버튼 기본 css
 import 'swiper/css/pagination';     // swiper dot-list 기본 css    
 
 
-function Action() {
+function Comedy() {
 
     const [isClick, setIsclick] = useState(false);
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
@@ -35,7 +35,7 @@ function Action() {
     return (
         <div>
             <MovieContainer>
-                <MovieTitle>액션</MovieTitle>
+                <MovieTitle>코미디</MovieTitle>
                 <Swiper 
                     spaceBetween={10}   // 슬라이드와 슬라이드 사이 여백(gap);
                     slidesPerView={5}   // 한번에 보여질 슬라이드 아이템의 갯수
@@ -61,7 +61,7 @@ function Action() {
     )
 }
 
-export default Action
+export default Comedy
 
 const MovieContainer = styled.div`
     margin-bottom: 50px;
