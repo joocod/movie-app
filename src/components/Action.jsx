@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchActionmovies } from '../store/Index';
+import { fetchActionmovies } from '../store';
 import styled from 'styled-components';
 import '../styled/swiperCustom.css';
 import Overview from './Overview';

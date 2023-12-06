@@ -31,23 +31,35 @@
  */
 
 import {combineReducers} from 'redux'
-import {FETCH_ACTION_MOVIES} from '../Index'   
+import {FETCH_ACTION_MOVIES, FETCH_COMEDY_MOVIES} from '../'   
 
-    const actionMoviereducer = (state = [], action)=>{
-        switch(action.type){
-            case FETCH_ACTION_MOVIES :
-            return{
-                ...state,
-                movies : action.data
-            };
-            default:
-            return state;
-        }
-    }
+const actionMoviereducer = (state = [], action)=>{
+  switch(action.type){
+    case FETCH_ACTION_MOVIES :
+      return{
+      ...state,
+      movies : action.data
+      };
+    default:
+    return state;
+  }
+}
+const comedyMoviereducer = (state = [], action)=>{
+  switch(action.type){
+    case FETCH_COMEDY_MOVIES :
+      return{
+      ...state,
+      movies : action.data
+      };
+    default:
+    return state;
+  }
+}
     
-    const rootReducer = combineReducers({
-        action : actionMoviereducer, 
-    })  
+const rootReducer = combineReducers({
+    action : actionMoviereducer, 
+    comdey : comedyMoviereducer,
+})  
     
     /*
         - 여러개의 reducer를 하나의 store에서 실행할 수 있도록 해주는 메소드

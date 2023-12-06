@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const FETCH_ACTION_MOVIES = 'FETCH_ACTION_MOVIES';
-
 const API_KEY = '82776dd4e021405937c471b1f995902b';
 const BASE_URL = 'https://api.themoviedb.org/3';
+
+export const FETCH_ACTION_MOVIES = 'FETCH_ACTION_MOVIES';
+export const FETCH_COMEDY_MOVIES = 'FETCH_COMEDY_MOVIES';
 
 // 액션
 export const fetchActiondata = (data)=>{
@@ -25,3 +26,27 @@ export const fetchActionmovies = ()=>{
         })
     }
 }
+
+export const fetchComedydata = (data)=>{
+    return {
+        type : FETCH_COMEDY_MOVIES,
+        data
+    }
+}
+
+export const fetchComedymovies = ()=>{
+    return(dispatch)=>{
+        // dispatch : 외부에서 데이터를 가져올 때 사용하는 reducer 기능
+        // useState의 대체
+
+        return axios.get(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=35`)
+        .then((res)=>{      // then : axios에서 콜백함수를 대체하는 return과 같은 구문
+            dispatch(fetchActiondata(res.data))
+            
+        })
+    }
+}
+
+/*
+
+*/
