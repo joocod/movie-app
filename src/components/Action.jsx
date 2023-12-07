@@ -19,6 +19,7 @@ import 'swiper/css/pagination';     // swiper dot-list 기본 css
 function Action() {
 
     const [isClick, setIsclick] = useState(false);
+    const [genres, setGenres] = useState({});
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
     useEffect(()=>{
         dispatch(fetchActionmovies())
@@ -34,6 +35,23 @@ function Action() {
     const overviewClose = ()=>{
         setIsclick(false);
     }
+
+    useEffect(()=>{
+        const fetchGenres = async ()=>{
+            try{
+                const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?82776dd4e021405937c471b1f995902b&language=ko-KR')
+                const data = await res.json();
+                const genreMap = data.genres.reduce((acc,genre)=>{
+                    acc[genre.id] = genre.name;
+                    return acc
+                },{});
+                setGenres(genreMap)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        fetchGenres();
+    },[])
     return (
         <div>
             <MovieContainer>
