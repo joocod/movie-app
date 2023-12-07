@@ -4,13 +4,13 @@ import { LuPlus } from "react-icons/lu";
 import { SlLike } from "react-icons/sl";
 import styled from 'styled-components';
 
-function MovieCard({movie}) {
+function MovieCard({movie, genreText}) {
     const {title, backdrop_path, genre_ids} = movie;
     return (
         <MovieItem>
-            <img src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}/>
+            <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
             <Content className="addi-content">
-                <p>{title}</p>
+                <p>{movie.title}</p>
                 <div className='btn-wrapper'>
                     <button className='btn1'><IoIosPlay /></button>
                     <button className='btn2'><LuPlus /></button>
@@ -18,8 +18,8 @@ function MovieCard({movie}) {
                     <button className='btn4'><IoIosArrowDown /></button>
                 </div>
                 <div className='genres-wrapper'>
-                    {genre_ids.map((el)=>(
-                        <span key={el}>{genre_ids[el]}</span>
+                    {genre_ids.map(genreId=>(
+                        <span key={genreId}>{genre_ids[genreId]}</span>
                     ))}
                 </div>
             </Content>
