@@ -4,6 +4,7 @@ import { MdClose } from "react-icons/md";
 import {Link} from 'react-router-dom';
 
 function Overview({movie, setIsClick}) {
+  // console.log(movie.id)
     return (
       <HoverContainer className='overview'>
         <HoverWrapper>

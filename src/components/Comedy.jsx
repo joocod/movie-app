@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { fetchComedymovies } from '../store';
 import styled from 'styled-components';
 import Overview from './Overview';
+import '../styled/swiperCustom.css';
+import MovieCard from './MovieCard';
 
 // swiper
 // yarn add swiper 설치
@@ -23,7 +25,7 @@ function Comedy() {
     }, [])
 
     const actionData = useSelector((state)=>state.comedy.movies, []) || []
-    console.log(actionData.results)
+    // console.log(actionData.results)
 
     const overviewEvent = (el)=>{
         setIsclick(el);
@@ -48,9 +50,7 @@ function Comedy() {
                     <MovieWrapper>
                         {actionData.results && actionData.results.map((el,index)=>(
                             <SwiperSlide>
-                                <MovieItem onClick={()=>overviewEvent(el,index)}>
-                                    <img src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}/>
-                                </MovieItem>
+                                <MovieCard movie={el}></MovieCard>
                             </SwiperSlide>
                         ))}
                     </MovieWrapper>
