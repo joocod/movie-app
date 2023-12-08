@@ -5,7 +5,7 @@ import { SlLike } from "react-icons/sl";
 import styled from 'styled-components';
 
 function MovieCard({movie, genreText}) {
-    const {title, backdrop_path, genre_ids} = movie;
+    // const {title, backdrop_path} = movie;
     return (
         <MovieItem>
             <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
@@ -18,9 +18,7 @@ function MovieCard({movie, genreText}) {
                     <button className='btn4'><IoIosArrowDown /></button>
                 </div>
                 <div className='genres-wrapper'>
-                    {genre_ids.map(genreId=>(
-                        <span key={genreId}>{genre_ids[genreId]}</span>
-                    ))}
+                   {/* <span>{genreText}</span> */}
                 </div>
             </Content>
         </MovieItem> 
@@ -82,8 +80,15 @@ const Content = styled.div`
             height: 40px;
             border-radius: 100%;
             background: white;
-            path{
-                color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg{
+                width: 10px;
+                height: 10px;
+                path{
+                    color: black;
+                }
             }
             &.btn4{
                 margin-left: auto;

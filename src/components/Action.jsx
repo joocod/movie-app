@@ -54,7 +54,7 @@ function Action() {
     },[])
 
     const getGenreText = (genreId)=>{
-        return genreId.map((el)=>genres[el]).join()
+        return genreId.map((el)=>genres[el]).join();
     }
     return (
         <div>
@@ -71,8 +71,8 @@ function Action() {
                 >
                     <MovieWrapper>
                         {actionData.results && actionData.results.map((el,index)=>(
-                            <SwiperSlide>
-                                <MovieCard movie={el} genreText={getGenreText(el.genre_ids)}></MovieCard>
+                            <SwiperSlide key={index}>
+                                <MovieCard movie={el} genreText={getGenreText(el.genre_ids)}/>
                             </SwiperSlide>
                         ))}
                     </MovieWrapper>
