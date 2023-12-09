@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { IoIosPlay, IoIosArrowDown } from "react-icons/io";
 import { LuPlus } from "react-icons/lu";
 import { SlLike } from "react-icons/sl";
 import styled from 'styled-components';
 
 function MovieCard({movie, genreText}) {
+
     // const {title, backdrop_path} = movie;
+
     return (
         <MovieItem>
             <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
@@ -18,14 +20,15 @@ function MovieCard({movie, genreText}) {
                     <button className='btn4'><IoIosArrowDown /></button>
                 </div>
                 <div className='genres-wrapper'>
-                   {/* <span>{genreText}</span> */}
+                   <span>{genreText}</span>
                 </div>
             </Content>
-        </MovieItem> 
+        </MovieItem>
     )
 }
 
 export default MovieCard
+
 
 const MovieItem = styled.div`
     flex-shrink: 0;

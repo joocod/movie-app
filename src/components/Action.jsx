@@ -28,34 +28,37 @@ function Action() {
     const actionData = useSelector((state)=>state.action.movies, []) || []
     // console.log(actionData.results)
 
-    const overviewEvent = (el,index)=>{
-        setIsclick(index);
+    const overviewEvent = (el)=>{
+        setIsclick(el);
     }
 
     const overviewClose = ()=>{
         setIsclick(false);
     }
 
+    // 장르 추가
     useEffect(()=>{
         const fetchGenres = async ()=>{
             try{
-                const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?82776dd4e021405937c471b1f995902b&language=ko-KR')
+                const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=82776dd4e021405937c471b1f995902b&language=ko-KR');
                 const data = await res.json();
-                const genreMap = data.genres.reduce((acc,genre)=>{
+                const genreMap = data.genres.reduce((acc, genre)=>{
                     acc[genre.id] = genre.name;
+                    // console.log(acc)
                     return acc
-                },{});
-                setGenres(genreMap)
+                }, {});
+                setGenres(genreMap);
             }catch(error){
-                console.log(error)
+                console.error(error)
             }
         }
         fetchGenres();
-    },[])
+    }, [])
 
     const getGenreText = (genreId)=>{
-        return genreId.map((el)=>genres[el]).join();
+        return genreId.map((el)=>genres[el]).join()
     }
+
     return (
         <div>
             <MovieContainer>
