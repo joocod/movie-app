@@ -87,8 +87,8 @@ const Content = styled.div`
             align-items: center;
             justify-content: center;
             svg{
-                width: 10px;
-                height: 10px;
+                width: 20px;
+                height: 20px;
                 path{
                     color: black;
                 }
