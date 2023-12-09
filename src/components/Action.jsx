@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { fetchActionmovies } from '../store';
 import styled from 'styled-components';
 import Overview from './Overview';
-import '../styled/swiperCustom.css';
 import MovieCard from './MovieCard';
+import '../styled/swiperCustom.css';
 
 // swiper
 // yarn add swiper 설치
@@ -17,7 +17,7 @@ import 'swiper/css/pagination';     // swiper dot-list 기본 css
 
 
 function Action() {
-
+    const [itemSelect, setItemSelect] = useState({});
     const [isClick, setIsclick] = useState(false);
     const [genres, setGenres] = useState({});
     const dispatch = useDispatch(); // 생성된 action의 state에 접근
@@ -59,6 +59,10 @@ function Action() {
         return genreId.map((el)=>genres[el]).join()
     }
 
+    const movieClickEvent = (movie)=>{
+        setIsclick(movie)
+    }
+
     return (
         <div>
             <MovieContainer>
@@ -75,13 +79,21 @@ function Action() {
                     <MovieWrapper>
                         {actionData.results && actionData.results.map((el,index)=>(
                             <SwiperSlide key={index}>
-                                <MovieCard movie={el} genreText={getGenreText(el.genre_ids)}/>
+                                <MovieCard 
+                                movie={el} 
+                                genreText={getGenreText(el.genre_ids)}
+                                onClick = {movieClickEvent}
+                                />
                             </SwiperSlide>
                         ))}
                     </MovieWrapper>
                 </Swiper>
             </MovieContainer>
-            {/* {isClick && <Overview movie={isClick} setIsClick={overviewClose}/>} */}
+            {isClick && (
+                <OverviewWrapper isVisible = {!!itemSelect}>
+                    <Overview {...itemSelect}/>
+                </OverviewWrapper>
+            )}
         </div>
     )
 }
@@ -108,4 +120,17 @@ const MovieItem = styled.div`
         display: block;
         width: 100%;
     }
+`
+const OverviewWrapper = styled.div`
+    display: ${props => [props.isVisible ? 'block' : 'none']};
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999; 
 `

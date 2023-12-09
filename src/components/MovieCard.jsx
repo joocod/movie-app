@@ -4,12 +4,12 @@ import { LuPlus } from "react-icons/lu";
 import { SlLike } from "react-icons/sl";
 import styled from 'styled-components';
 
-function MovieCard({movie, genreText}) {
+function MovieCard({movie, genreText, onClick}) {
 
     // const {title, backdrop_path} = movie;
 
     return (
-        <MovieItem>
+        <MovieItem onClick={()=>onClick(movie)}>
             <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
             <Content className="addi-content">
                 <p>{movie.title}</p>
@@ -43,6 +43,7 @@ const MovieItem = styled.div`
         top: 0;
         left: 0;
         transform: scale(1.3);
+        z-index: 10;
         .addi-content{
             opacity: 1;
             position: relative;
