@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MdClose } from "react-icons/md";
 import {Link} from 'react-router-dom';
 
-function Overview({movie, setIsClick, title, movieId, backdrop_path}) {
+function Overview({setIsClick, title, movieId, backdrop_path, overview}) {
   const [isVisible, setIsVisible] = useState(false);
   const overviewRef = useRef(null); 
   console.log(backdrop_path)

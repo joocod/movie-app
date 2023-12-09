@@ -60,7 +60,8 @@ function Action() {
     }
 
     const movieClickEvent = (movie)=>{
-        setIsclick(movie)
+        setItemSelect(movie);
+        setIsclick(true);
     }
 
     return (
