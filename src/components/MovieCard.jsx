@@ -2,14 +2,21 @@ import React from 'react';
 import { IoIosPlay, IoIosArrowDown } from "react-icons/io";
 import { LuPlus } from "react-icons/lu";
 import { SlLike } from "react-icons/sl";
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function MovieCard({movie, genreText, onClick}) {
+function MovieCard({movie, genreText}) {
 
     // const {title, backdrop_path} = movie;
 
+    const navigate = useNavigate(); // 링크로 이동시키는 요소
+
+    const overviewEvent = ()=>{
+        navigate(`movie/${movie.id}`)
+    }
+
     return (
-        <MovieItem onClick={()=>onClick(movie)}>
+        <MovieItem onClick={overviewEvent}>
             <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}/>
             <Content className="addi-content">
                 <p>{movie.title}</p>
