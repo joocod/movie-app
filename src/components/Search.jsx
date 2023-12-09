@@ -30,7 +30,9 @@ function Search() {
     const onClear = (e)=>{
         e.preventDefault();
         setText('');
-        setshowClearBtn(false)
+        setshowClearBtn(false);
+        setList(false);
+        setMovieList([]);
     }
 
     const fetch = async()=>{
@@ -39,6 +41,20 @@ function Search() {
         setMovieList(data);
         console.log(data)
     }
+
+    const inputChange = (e)=>{
+        setText(e.target.value)
+        setshowClearBtn(e.target.value.trim()!=='')
+        setList(true);
+        if(e.target.value.trim()){
+            // trim() : 공백 제거
+            fetch(setMovieList());
+            setList(true);
+        }else{
+            setMovieList([]);
+            setList(false);
+        }
+    }
     return (
         <>
             <SearchForm visible={`${visible}`} className={visible ? 'on' : null}>
@@ -46,14 +62,9 @@ function Search() {
                 <button className='search-btn' onClick={onToggleEvent}><BiSearch/></button>
                 {visible &&(
                     <input type='text' 
-                    placeholder='검색어를 입력하세요'
-                    value={text}
-                    onChange={(e)=>{
-                        setText(e.target.value)
-                        setshowClearBtn(e.target.value.trim()!=='')
-                        fetch(setMovieList());
-                        setList(true);
-                    }}>
+                        placeholder='검색어를 입력하세요'
+                        value={text}
+                        onChange={inputChange}>
                     </input>
                 )}
                 {showClearBtn && (
@@ -91,11 +102,12 @@ export default Search
 
 const SearchForm = styled.form`
     display: flex;
-    position: relative;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: 30px;
+    right: 30px;
     transition: 500ms;
     width: 30px;
+    z-index: 11;
     &.on{
         border: solid 1px #ffffff;
         transition: 500ms;
@@ -131,7 +143,7 @@ const ResultContainer = styled.div`
     width: 100%;
     height: 100%;
     background: black;
-    z-index: -1;
+    z-index: 10;
     padding: 100px;
     box-sizing: border-box;
     overflow: scroll;

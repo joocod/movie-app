@@ -9,9 +9,6 @@ function Header() {
         <HeaderContainer>
             <h1 className='logo'><Link to='/'><RiNetflixFill /></Link></h1>
             <Navigation/>
-            <HeaderRight>
-                <Search/>
-            </HeaderRight>
         </HeaderContainer>
     )
 }

@@ -62,6 +62,10 @@ input{
 }
 body,html{
 	background: #000000;
+	overflow-x: hidden;
+	&.no-scroll{
+		overflow-y: hidden;
+	}
 }
 `
 export default GlobalStyle;
