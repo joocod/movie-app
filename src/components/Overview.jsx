@@ -18,6 +18,7 @@ function Overview({setIsClick, title, movieId, backdrop_path, overview}) {
           </Link>
           <HoverText>
             <h2>{title}</h2>
+            <p>{overview}</p>
           </HoverText>
         </HoverWrapper>
       </HoverContainer>

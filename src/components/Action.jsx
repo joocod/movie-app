@@ -92,7 +92,7 @@ function Action() {
             </MovieContainer>
             {isClick && (
                 <OverviewWrapper isVisible = {!!itemSelect}>
-                    <Overview {...itemSelect}/>
+                    <Overview {...itemSelect} setIsClick={()=>setIsclick(false)}/>
                 </OverviewWrapper>
             )}
         </div>
