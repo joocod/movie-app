@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {styled} from 'styled-components';
 import { BiSearch } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
@@ -12,6 +12,8 @@ function Search() {
     // 검색어의 입력 여부를 보기 위해서 만든 상태 변수 state
     const [list, setList] = useState(false)         // 검색 리스트가 있는지의 여부
     const [movieList, setMovieList] = useState([]); // 검색 결과 리스트 출력 여부
+    const searchRef = useRef();
+    
     // console.log(text)
 
     // 계정마다 발급받는 api키를 변수화
@@ -39,7 +41,7 @@ function Search() {
         const res = await axios.get(BASE_URL);
         data = res.data.results || [];
         setMovieList(data);
-        console.log(data)
+        // console.log(data)
     }
 
     const inputChange = (e)=>{
@@ -55,6 +57,37 @@ function Search() {
             setList(false);
         }
     }
+
+    /*
+        - list가 있을 때는 document.body에 no-scroll 클래스 적용
+        - 없을 때는 no-scroll 클래스 remove
+        - 기본값은 no-scroll remove
+    */
+
+    useEffect(()=>{
+        if(list){
+            document.body.classList.add('no-scroll');
+        }else{
+            document.body.classList.remove('no-scroll');
+        }
+    },[list])
+
+    useEffect(()=>{
+        const clickSidecloseEvent = (e)=>{
+            if(searchRef.current && !searchRef.current.contains(e.target)){
+                setVisible(false);
+            }
+        }
+        document.addEventListener('mousedown', clickSidecloseEvent)
+    }, [text])
+
+    const enterPress = (e)=>{
+        console.log(e.key)
+        if(e.key === 'Enter'){
+            e.preventDefault(); // enter키 실행 막기
+        }
+    }
+
     return (
         <>
             <SearchForm visible={`${visible}`} className={visible ? 'on' : null}>
@@ -64,7 +97,9 @@ function Search() {
                     <input type='text' 
                         placeholder='검색어를 입력하세요'
                         value={text}
-                        onChange={inputChange}>
+                        onChange={inputChange}
+                        onKeyPress={enterPress}
+                        >
                     </input>
                 )}
                 {showClearBtn && (
@@ -142,18 +177,18 @@ const ResultContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    max-height: 100vh;
     background: black;
     z-index: 10;
     padding: 100px;
     box-sizing: border-box;
-    overflow: scroll;
+    overflow: auto;
     display: none;
     &.on{
         display: block;
     }
     .searchMovie{
         width: 100%;
-        height: 100%;
         position: relative;
         top: 0;
         left: 0;

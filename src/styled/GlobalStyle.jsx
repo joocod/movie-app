@@ -28,6 +28,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	overflow-x: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -62,7 +63,6 @@ input{
 }
 body,html{
 	background: #000000;
-	overflow-x: hidden;
 	&.no-scroll{
 		overflow-y: hidden;
 	}
