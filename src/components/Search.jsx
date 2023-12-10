@@ -70,10 +70,15 @@ function Search() {
         }else{
             document.body.classList.remove('no-scroll');
         }
+
+        return()=>{
+            document.body.classList.remove('no-scroll');
+        }
     },[list])
 
     useEffect(()=>{
         const clickSidecloseEvent = (e)=>{
+            // console.log(searchRef.current)
             if(searchRef.current && !searchRef.current.contains(e.target)){
                 setVisible(false);
             }
@@ -90,7 +95,7 @@ function Search() {
 
     return (
         <>
-            <SearchForm visible={`${visible}`} className={visible ? 'on' : null}>
+            <SearchForm visible={`${visible}`} className={visible ? 'on' : null} ref={searchRef}>
                 {/* 리액트에서의 null은 값을 비운다는 의미이기도 하다. */}
                 <button className='search-btn' onClick={onToggleEvent}><BiSearch/></button>
                 {visible &&(
