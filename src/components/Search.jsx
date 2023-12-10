@@ -87,10 +87,6 @@ function Search() {
                 console.log(error);
             }
         }
-    
-        const getGenreText = (genreId)=>{
-            return genreId.map((el)=>genres[el]).join()
-        }
 
         const clickSidecloseEvent = (e)=>{
             // console.log(searchRef.current)
@@ -110,6 +106,10 @@ function Search() {
         if(e.key === 'Enter'){
             e.preventDefault(); // enter키 실행 막기
         }
+    }
+    
+    const getGenreText = (genreId)=>{
+        return genreId.map((el)=>genres[el]).join()
     }
 
     return (
@@ -146,8 +146,6 @@ function Search() {
         </>
     )
 }
-
-
 
 const List = (props)=>{
     const {backdrop_path, title, genre_ids} = props.props;
