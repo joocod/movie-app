@@ -4,6 +4,7 @@ import { fetchActionmovies } from '../store';
 import styled from 'styled-components';
 import Overview from './Overview';
 import MovieCard from './MovieCard';
+import { fetchGenres } from '../api/api';
 import '../styled/swiperCustom.css';
 
 // swiper
@@ -14,6 +15,7 @@ import { Navigation, Pagination } from 'swiper/modules';    // swiper 모듈 imp
 import 'swiper/css';                // swiper 기본 css 적용 import
 import 'swiper/css/navigation';     // swiper 좌우 버튼 기본 css
 import 'swiper/css/pagination';     // swiper dot-list 기본 css    
+
 
 
 function Action() {
@@ -38,21 +40,12 @@ function Action() {
 
     // 장르 추가
     useEffect(()=>{
-        const fetchGenres = async ()=>{
-            try{
-                const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=82776dd4e021405937c471b1f995902b&language=ko-KR');
-                const data = await res.json();
-                const genreMap = data.genres.reduce((acc, genre)=>{
-                    acc[genre.id] = genre.name;
-                    // console.log(acc)
-                    return acc
-                }, {});
-                setGenres(genreMap);
-            }catch(error){
-                console.error(error)
-            }
+        const fetchActionMovieGenres = async ()=>{
+            dispatch(fetchActionmovies());
+            const genres = await fetchGenres();
+            setGenres(genres)
         }
-        fetchGenres();
+        fetchActionMovieGenres();
     }, [])
 
     const getGenreText = (genreId)=>{
@@ -81,9 +74,9 @@ function Action() {
                         {actionData.results && actionData.results.map((el,index)=>(
                             <SwiperSlide key={index}>
                                 <MovieCard 
-                                movie={el} 
-                                genreText={getGenreText(el.genre_ids)}
-                                onClick = {movieClickEvent}
+                                    movie={el} 
+                                    genreText={getGenreText(el.genre_ids)}
+                                    onClick = {movieClickEvent}
                                 />
                             </SwiperSlide>
                         ))}

@@ -46,9 +46,6 @@ const MovieItem = styled.div`
         width: 100%;
     }
     &:hover{
-        position: absolute;
-        top: 0;
-        left: 0;
         transform: scale(1.3);
         z-index: 10;
         .addi-content{

@@ -3,11 +3,14 @@ import {styled} from 'styled-components';
 import { BiSearch } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
 import axios from 'axios';  
+import MovieCard from './MovieCard';
+import { fetchGenres } from '../api/api';
 
 function Search() {
     const [text, setText] = useState('')    // 검색어의 상태 state
     const [visible, setVisible] = useState(false);  // input창의 기본 속성값 지정
     const [showClearBtn, setshowClearBtn] = useState('')
+    const [genres, setGenres] = useState({});
 
     // 검색어의 입력 여부를 보기 위해서 만든 상태 변수 state
     const [list, setList] = useState(false)         // 검색 리스트가 있는지의 여부
@@ -77,6 +80,18 @@ function Search() {
     },[list])
 
     useEffect(()=>{
+        const fetchSearchGenres = async()=>{
+            try{
+                const genres = await fetchGenres();
+            }catch(error){
+                console.log(error);
+            }
+        }
+    
+        const getGenreText = (genreId)=>{
+            return genreId.map((el)=>genres[el]).join()
+        }
+
         const clickSidecloseEvent = (e)=>{
             // console.log(searchRef.current)
             if(searchRef.current && !searchRef.current.contains(e.target)){
@@ -84,6 +99,10 @@ function Search() {
             }
         }
         document.addEventListener('mousedown', clickSidecloseEvent)
+        fetchSearchGenres();
+        return ()=>{
+            document.removeEventListener('mousedown', clickSidecloseEvent)
+        }
     }, [text])
 
     const enterPress = (e)=>{
@@ -128,12 +147,13 @@ function Search() {
     )
 }
 
+
+
 const List = (props)=>{
-    const {backdrop_path, title} = props.props;
-    const imgUrl = backdrop_path;
+    const {backdrop_path, title, genre_ids} = props.props;
     return(
         <div className='listItem'>
-            <img src={`https://image.tmdb.org/t/p/original/${imgUrl}`}/>
+            <MovieCard movie={props.props} genreText={genre_ids}/>
         </div>
     )
 }
@@ -211,6 +231,7 @@ const ResultContainer = styled.div`
             flex-wrap: wrap;
             gap: 20px;
             .listItem{
+                position: relative;
                 img{
                     width: 350px;
                 }
